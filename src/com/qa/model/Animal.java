@@ -1,41 +1,37 @@
 package com.qa.model;
 
-public abstract class Animal {
+public abstract class Animal implements Comparable<Animal>{
     private String name;
     private int age;
-    public Animal(String name, int age){
+    public Animal(String name, int age) {
         this.name = name;
-        this.age  = age;
+        this.age = age;
     }
 
-    //setters and getters for name and age
+    @Override
+    public int compareTo(Animal o) {
+        return age - o.getAge();
+    }
+
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
-
-    public int getAge() {
-        return age;
+    public String getName() {
+        return this.name;
+    }
+    private int getAge() {
+        return this.age;
     }
 
-    //Abstract methods, the Animal class doesn't know
-    //how to implement these. We need some concrete
-    //instantiations in the subclasses
-
-    public abstract String sayHello();
-
-    public abstract String move();
 
     public String toString(){
-        return "Name: " + name + " Age: " + age;
+        return getName();
     }
 
-
+    public abstract String sayHello();
+    public abstract String move();
 }
